@@ -18,6 +18,10 @@ TfrmMain *frmMain;
 __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 	: TForm(Owner)
 {
+#ifdef ACCEPT_WM_DROPFILES
+	// inform OS that we accepting dropping files
+	DragAcceptFiles(Handle, True);
+#endif
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::FormCreate(TObject *Sender)
@@ -110,3 +114,32 @@ void __fastcall TfrmMain::actShowLogExecute(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+#ifdef ACCEPT_WM_DROPFILES
+// fires an event when a file, or files are dropped onto the application.
+void __fastcall TfrmMain::WMDropFiles(TWMDropFiles &message)
+{
+    AnsiString FileName;
+    FileName.SetLength(MAX_PATH);
+
+	int Count = DragQueryFile((HDROP)message.Drop, 0xFFFFFFFF, NULL, MAX_PATH);
+
+	// ignore all files but first one
+	if (Count > 1)
+		Count = 1;
+
+	// index through the files and query the OS for each file name...
+	for (int index = 0; index < Count; ++index)
+	{
+		// the following code gets the FileName of the dropped file. it
+		// looks cryptic but that's only because it is. Hey, Why do you think
+		// Delphi and C++Builder are so popular anyway? Look up DragQueryFile
+		// the Win32.hlp Windows API help file.
+		FileName.SetLength(DragQueryFile((HDROP)message.Drop, index,FileName.c_str(), MAX_PATH));
+//		appSettings.Editor.asDefaultDir = ExtractFileDir(FileName);
+		AppOpenFile(FileName);
+	}
+
+	// tell the OS that you're finished...
+	DragFinish((HDROP) message.Drop);
+}
+#endif

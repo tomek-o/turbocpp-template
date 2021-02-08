@@ -13,6 +13,8 @@
 #include <ComCtrls.hpp>
 #include <StdActns.hpp>
 
+//#define ACCEPT_WM_DROPFILES
+
 //---------------------------------------------------------------------------
 class TfrmMain : public TForm
 {
@@ -41,9 +43,16 @@ __published:	// IDE-managed Components
 	void __fastcall FormDestroy(TObject *Sender);
 	void __fastcall actShowLogExecute(TObject *Sender);
 private:	// User declarations
-
+#ifdef ACCEPT_WM_DROPFILES
+	void __fastcall WMDropFiles(TWMDropFiles &message);
+#endif
 public:		// User declarations
 	__fastcall TfrmMain(TComponent* Owner);
+	BEGIN_MESSAGE_MAP
+#ifdef ACCEPT_WM_DROPFILES
+		MESSAGE_HANDLER(WM_DROPFILES, TWMDropFiles, WMDropFiles)
+#endif
+	END_MESSAGE_MAP(TForm);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TfrmMain *frmMain;
