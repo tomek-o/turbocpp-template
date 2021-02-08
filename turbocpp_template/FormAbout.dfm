@@ -62,7 +62,7 @@ object frmAbout: TfrmAbout
       Top = 80
       Width = 172
       Height = 13
-      Caption = 'Copyright '#169' Tomasz Ostrowski 2020'
+      Caption = 'Copyright '#169' Tomasz Ostrowski 2021'
       IsControl = True
     end
     object lblVersion: TLabel
