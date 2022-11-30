@@ -28,6 +28,7 @@
         <property category="build.config.1" name="settings.win32b" value="default"/>
         <property category="build.config.1" name="type" value="Toolset"/>
         <property category="build.config.1" name="win32.win32b.builddir" value="Release_Build"/>
+        <property category="build.node" name="lastconfig" value="Debug_Build"/>
         <property category="build.node" name="libraries" value="vcl.lib rtl.lib"/>
         <property category="build.node" name="name" value="turbocpp_template.exe"/>
         <property category="build.node" name="packages" value="vclx;vcl;rtl;dbrtl;vcldb;dbxcds;dbexpress;xmlrtl;vclie;inet;inetdbbde;inetdbxpress;dsnap;soaprtl;bdertl;vcldbx"/>
@@ -62,7 +63,8 @@
         <property category="win32.Debug_Build.win32b.dcc32" name="option.D.enabled" value="1"/>
         <property category="win32.Debug_Build.win32b.dcc32" name="option.V.enabled" value="1"/>
         <property category="win32.Debug_Build.win32b.ilink32" name="option.L.arg.1" value="$(BDS)\lib\debug"/>
-        <property category="win32.Debug_Build.win32b.ilink32" name="option.L.arg.2" value="..\jsoncpp\debug_build"/>
+        <property category="win32.Debug_Build.win32b.ilink32" name="option.L.arg.2" value="..\common\debug_build"/>
+        <property category="win32.Debug_Build.win32b.ilink32" name="option.L.arg.3" value="..\jsoncpp\debug_build"/>
         <property category="win32.Debug_Build.win32b.ilink32" name="option.L.arg.merge" value="1"/>
         <property category="win32.Debug_Build.win32b.ilink32" name="option.L.enabled" value="1"/>
         <property category="win32.Debug_Build.win32b.ilink32" name="option.dynamicrtl.enabled" value="0"/>
@@ -83,7 +85,8 @@
         <property category="win32.Release_Build.win32b.dcc32" name="option.$O.enabled" value="1"/>
         <property category="win32.Release_Build.win32b.dcc32" name="option.V.enabled" value="0"/>
         <property category="win32.Release_Build.win32b.ilink32" name="option.L.arg.1" value="$(BDS)\lib\release"/>
-        <property category="win32.Release_Build.win32b.ilink32" name="option.L.arg.2" value="..\jsoncpp\release_build"/>
+        <property category="win32.Release_Build.win32b.ilink32" name="option.L.arg.2" value="..\common\release_build"/>
+        <property category="win32.Release_Build.win32b.ilink32" name="option.L.arg.3" value="..\jsoncpp\release_build"/>
         <property category="win32.Release_Build.win32b.ilink32" name="option.L.arg.merge" value="1"/>
         <property category="win32.Release_Build.win32b.ilink32" name="option.L.enabled" value="1"/>
         <property category="win32.Release_Build.win32b.ilink32" name="option.dynamicrtl.enabled" value="0"/>
@@ -294,10 +297,10 @@
       </IDEOPTIONS>
     </BCBPROJECT>
 		<buildevents>
-			<buildevent file="turbocpp_template.bdsproj">
-				<precompile mode="0" cancancel="-1" capture="0" showconsole="0">$(PROJECTDIR)\build-tools\touch.exe $(PROJECTDIR)\FormAbout.cpp
+      <buildevent file="turbocpp_template.bdsproj">
+        <precompile mode="0" cancancel="-1" capture="0" showconsole="0">$(PROJECTDIR)\build-tools\touch.exe $(PROJECTDIR)\FormAbout.cpp
 </precompile>
-			</buildevent>
-		</buildevents>
+      </buildevent>
+    </buildevents>
 	</CPlusPlusBuilder.Personality>
 </BorlandProject>

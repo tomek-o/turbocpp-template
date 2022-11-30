@@ -8,6 +8,7 @@ USEFORM("FormSettings.cpp", frmSettings);
 USEFORM("FormAbout.cpp", frmAbout);
 USEFORM("LogUnit.cpp", frmLog);
 //---------------------------------------------------------------------------
+#pragma link "common.lib"
 #pragma link "jsoncpp.lib"
 
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
