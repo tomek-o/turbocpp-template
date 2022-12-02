@@ -13,7 +13,7 @@ object frmSettings: TfrmSettings
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poScreenCenter
   OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96
@@ -70,6 +70,8 @@ object frmSettings: TfrmSettings
       ImageIndex = 1
       ExplicitLeft = 8
       ExplicitTop = 22
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lblUiCapacity: TLabel
         Left = 5
         Top = 26
@@ -83,7 +85,7 @@ object frmSettings: TfrmSettings
         Width = 111
         Height = 21
         Style = csDropDownList
-        ItemHeight = 13
+        ItemHeight = 0
         TabOrder = 0
         OnChange = cmbMaxUiLogLinesChange
         Items.Strings = (
