@@ -26,7 +26,7 @@ public:
 	void Clear(void);
 	void LoadFrom(const Json::Value &jv);
 	void SaveTo(Json::Value &jv) const;
-	const std::deque<AnsiString>& Get(void)
+	const std::deque<AnsiString>& Get(void) const
 	{
 		return MRU;
 	}
@@ -40,6 +40,7 @@ public:
 	}
 	void RemoveObsoleteFiles(void);
 	AnsiString GetLastDir(void) const;
+	AnsiString GetLastFile(void) const;
 	typedef void __fastcall (__closure *OnMruClick)(TObject *Sender);
 	void UpdateMenu(TMainMenu *menu, TMenuItem *mi, OnMruClick onClick);
 private:
@@ -48,6 +49,7 @@ private:
 	OnMruClick onClick;
 	void __fastcall RemoveObsoleteFilesClick(TObject *Sender);
 	void __fastcall ClearMruClick(TObject *Sender);
+	void RefreshMenu(void);	
 };
 
 #endif

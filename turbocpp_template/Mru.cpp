@@ -41,6 +41,7 @@ void Mru::Add(AnsiString item)
 	{
 		MRU.pop_front();
 	}
+	RefreshMenu();
 }
 
 void Mru::Clear(void)
@@ -71,14 +72,15 @@ void Mru::RemoveObsoleteFiles(void)
 	std::deque<AnsiString>::iterator iter;
 	for (iter = MRU.begin(); iter != MRU.end(); )
 	{
-		bool exist = FileExists(*iter);
+		AnsiString name = *iter;
+		bool exist = FileExists(name);
 		if (exist)
 		{
 			++iter;
 		}
 		else
 		{
-			MRU.erase(iter++);
+			iter = MRU.erase(iter);
         }
 	}
 }
@@ -93,6 +95,16 @@ AnsiString Mru::GetLastDir(void) const
 	return "";
 }
 
+AnsiString Mru::GetLastFile(void) const
+{
+	if (MRU.empty() == false)
+	{
+		AnsiString fileName = MRU.back();
+		return fileName;
+	}
+	return "";
+}
+
 void Mru::UpdateMenu(TMainMenu *menu, TMenuItem *mi, OnMruClick onClick)
 {
 	assert(menu);
@@ -102,6 +114,14 @@ void Mru::UpdateMenu(TMainMenu *menu, TMenuItem *mi, OnMruClick onClick)
 	assert(onClick);
 	this->onClick = onClick;
 
+	RefreshMenu();
+}
+
+void Mru::RefreshMenu(void)
+{
+	if (menu == NULL || mi == NULL)
+		return;
+		 
 	mi->Clear();
 	TMenuItem *item;
 	mi->AutoHotkeys = maManual;
