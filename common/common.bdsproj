@@ -150,6 +150,9 @@
           <property category="win32.*.win32b.ilink32" name="option.aa.enabled" value="0"/>
           <property category="win32.*.win32b.ilink32" name="option.ap.enabled" value="0"/>
           <property category="win32.*.win32b.ilink32" name="option.dynamicrtl.enabled" value="1"/>
+          <property category="win32.*.win32b.tlib" name="option.P.arg" value="32"/>
+          <property category="win32.*.win32b.tlib" name="option.P.arg.merge" value="1"/>
+          <property category="win32.*.win32b.tlib" name="option.P.enabled" value="1"/>
           <property category="win32.*.win32b.tlib" name="option.dynamicrtl.enabled" value="0"/>
         </optionset>
       </project>
@@ -157,6 +160,8 @@
         <FILE FILENAME="common.cpp" CONTAINERID="CCompiler" LOCALCOMMAND="" UNITNAME="common" FORMNAME="" DESIGNCLASS=""/>
         <FILE FILENAME="base64.cpp" CONTAINERID="CCompiler" LOCALCOMMAND="" UNITNAME="base64" FORMNAME="" DESIGNCLASS="" ADDITIONAL="base64.h"/>
         <FILE FILENAME="BtnController.h" CONTAINERID="" LOCALCOMMAND="" UNITNAME="" FORMNAME="" DESIGNCLASS=""/>
+        <FILE FILENAME="TimerController.h" CONTAINERID="" LOCALCOMMAND="" UNITNAME="" FORMNAME="" DESIGNCLASS=""/>
+        <FILE FILENAME="TControlController.h" CONTAINERID="" LOCALCOMMAND=""/>
         <FILE FILENAME="Colors.cpp" CONTAINERID="CCompiler" LOCALCOMMAND="" UNITNAME="Colors" FORMNAME="" DESIGNCLASS="" ADDITIONAL="Colors.h"/>
         <FILE FILENAME="ecc.cpp" CONTAINERID="CCompiler" LOCALCOMMAND="" UNITNAME="ecc" FORMNAME="" DESIGNCLASS=""/>
         <FILE FILENAME="ecc.h" CONTAINERID="" LOCALCOMMAND="" UNITNAME="" FORMNAME="" DESIGNCLASS=""/>
@@ -167,17 +172,24 @@
         <FILE FILENAME="Observer.h" CONTAINERID="" LOCALCOMMAND="" UNITNAME="" FORMNAME="" DESIGNCLASS=""/>
         <FILE FILENAME="OS.cpp" CONTAINERID="CCompiler" LOCALCOMMAND="" UNITNAME="OS" FORMNAME="" DESIGNCLASS="" ADDITIONAL="OS.h"/>
         <FILE FILENAME="ScopedLock.h" CONTAINERID="" LOCALCOMMAND="" UNITNAME="" FORMNAME="" DESIGNCLASS=""/>
+        <FILE FILENAME="ScopedBool.h" CONTAINERID="" LOCALCOMMAND="" UNITNAME="" FORMNAME="" DESIGNCLASS=""/>
+        <FILE FILENAME="ScopedFile.h" CONTAINERID="" LOCALCOMMAND="" UNITNAME="" FORMNAME="" DESIGNCLASS=""/>
         <FILE FILENAME="singleton.h" CONTAINERID="" LOCALCOMMAND="" UNITNAME="" FORMNAME="" DESIGNCLASS=""/>
         <FILE FILENAME="TimeCounter.h" CONTAINERID="" LOCALCOMMAND="" UNITNAME="" FORMNAME="" DESIGNCLASS=""/>
         <FILE FILENAME="Unicode.cpp" CONTAINERID="CCompiler" LOCALCOMMAND="" UNITNAME="Unicode" FORMNAME="" DESIGNCLASS="" ADDITIONAL="Unicode.h"/>
         <FILE FILENAME="Utilities.cpp" CONTAINERID="CCompiler" LOCALCOMMAND="" UNITNAME="Utilities" FORMNAME="" DESIGNCLASS="" ADDITIONAL="Utilities.h"/>
-        <FILE FILENAME="Utils.cpp" CONTAINERID="CCompiler" LOCALCOMMAND="" UNITNAME="Utils" FORMNAME="" DESIGNCLASS="" ADDITIONAL="Utils.h"/>
+        <FILE FILENAME="SipUtils.cpp" CONTAINERID="CCompiler" LOCALCOMMAND="" UNITNAME="SipUtils" FORMNAME="" DESIGNCLASS="" ADDITIONAL="SipUtils.h"/>
         <FILE FILENAME="WindowsMessageFilter.cpp" CONTAINERID="CCompiler" LOCALCOMMAND="" UNITNAME="WindowsMessageFilter" FORMNAME="" DESIGNCLASS="" ADDITIONAL="WindowsMessageFilter.h"/>
         <FILE FILENAME="MathUtils.cpp" CONTAINERID="CCompiler" LOCALCOMMAND="" UNITNAME="MathUtils" FORMNAME="" DESIGNCLASS="" ADDITIONAL="MathUtils.h"/>
         <FILE FILENAME="StaticCheck.h" CONTAINERID="" LOCALCOMMAND="" UNITNAME="" FORMNAME="" DESIGNCLASS=""/>
         <FILE FILENAME="well512.c" CONTAINERID="CCompiler" LOCALCOMMAND="" UNITNAME="well512" FORMNAME="" DESIGNCLASS=""/>
         <FILE FILENAME="well512.h" CONTAINERID="" LOCALCOMMAND="" UNITNAME="" FORMNAME="" DESIGNCLASS=""/>
         <FILE FILENAME="TrayIcon.cpp" CONTAINERID="CCompiler" LOCALCOMMAND="" UNITNAME="TrayIcon" FORMNAME="" DESIGNCLASS="" ADDITIONAL="TrayIcon.h"/>
+        <FILE FILENAME="bin2str.cpp" CONTAINERID="CCompiler" LOCALCOMMAND="" UNITNAME="bin2str" FORMNAME="" DESIGNCLASS="" ADDITIONAL="bin2str.h"/>
+        <FILE FILENAME="urlencode.cpp" CONTAINERID="CCompiler" LOCALCOMMAND="" UNITNAME="urlencode" FORMNAME="" DESIGNCLASS="" ADDITIONAL="urlencode.h"/>
+        <FILE FILENAME="RC4.cpp" CONTAINERID="CCompiler" LOCALCOMMAND="" UNITNAME="RC4" FORMNAME="" DESIGNCLASS="" ADDITIONAL="RC4.h"/>
+        <FILE FILENAME="md5_rsa.cpp" CONTAINERID="CCompiler" LOCALCOMMAND="" UNITNAME="md5_rsa" FORMNAME="" DESIGNCLASS=""/>
+        <FILE FILENAME="md5_rsa.h" CONTAINERID="" LOCALCOMMAND=""/>
       </FILELIST>
       <IDEOPTIONS>
         <VersionInfo>

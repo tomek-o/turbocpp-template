@@ -21,8 +21,8 @@ inline void strncpyz(char* dst, const char* src, int dstsize) {
 
 void Settings::SetDefault(void)
 {
-	frmMain.iWidth = 350;
-	frmMain.iHeight = 300;
+	frmMain.iWidth = 600;
+	frmMain.iHeight = 400;
 	frmMain.iPosX = 30;
 	frmMain.iPosY = 30;
 	frmMain.bWindowMaximized = false;
