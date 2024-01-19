@@ -30,18 +30,18 @@ void __fastcall TfrmMain::FormCreate(TObject *Sender)
 	appSettings.Read(asConfigFile);
 	if (this->BorderStyle != bsSingle)
 	{
-		this->Width = appSettings.frmMain.iWidth;
-		this->Height = appSettings.frmMain.iHeight;
+		this->Width = appSettings.frmMain.width;
+		this->Height = appSettings.frmMain.height;
 	}
-	this->Top = appSettings.frmMain.iPosY;
-	this->Left = appSettings.frmMain.iPosX;
-	if (appSettings.frmMain.bAlwaysOnTop)
+	this->Top = appSettings.frmMain.posY;
+	this->Left = appSettings.frmMain.posX;
+	if (appSettings.frmMain.alwaysOnTop)
 		this->FormStyle = fsStayOnTop;
 	else
 		this->FormStyle = fsNormal;
-	if (appSettings.frmMain.bWindowMaximized)
+	if (appSettings.frmMain.windowMaximized)
 		this->WindowState = wsMaximized;
-	if (appSettings.Logging.bLogToFile)
+	if (appSettings.logging.logToFile)
 		CLog::Instance()->SetFile(ChangeFileExt(Application->ExeName, ".log").c_str());
 	else
 		CLog::Instance()->SetFile("");
@@ -50,14 +50,14 @@ void __fastcall TfrmMain::FormCreate(TObject *Sender)
 void __fastcall TfrmMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 {
 	AnsiString asConfigFile = ChangeFileExt( Application->ExeName, ".json" );
-	appSettings.frmMain.bWindowMaximized = (this->WindowState == wsMaximized);
-	if (!appSettings.frmMain.bWindowMaximized)
+	appSettings.frmMain.windowMaximized = (this->WindowState == wsMaximized);
+	if (!appSettings.frmMain.windowMaximized)
 	{
 		// these values are meaningless is wnd is maximized
-		appSettings.frmMain.iWidth = this->Width;
-		appSettings.frmMain.iHeight = this->Height;
-		appSettings.frmMain.iPosY = this->Top;
-		appSettings.frmMain.iPosX = this->Left;
+		appSettings.frmMain.width = this->Width;
+		appSettings.frmMain.height = this->Height;
+		appSettings.frmMain.posY = this->Top;
+		appSettings.frmMain.posX = this->Left;
 	}
 	appSettings.Write(asConfigFile);
 
@@ -74,15 +74,15 @@ void __fastcall TfrmMain::actShowSettingsExecute(TObject *Sender)
 {
 	frmSettings->appSettings = &appSettings;
 	frmSettings->ShowModal();
-	if (appSettings.frmMain.bAlwaysOnTop)
+	if (appSettings.frmMain.alwaysOnTop)
 		this->FormStyle = fsStayOnTop;
 	else
 		this->FormStyle = fsNormal;
-	if (appSettings.Logging.bLogToFile)
+	if (appSettings.logging.logToFile)
 		CLog::Instance()->SetFile(ChangeFileExt(Application->ExeName, ".log").c_str());
 	else
 		CLog::Instance()->SetFile("");
-	frmLog->SetLogLinesLimit(appSettings.Logging.iMaxUiLogLines);
+	frmLog->SetLogLinesLimit(appSettings.logging.maxUiLogLines);
 }
 //---------------------------------------------------------------------------
 
@@ -92,7 +92,7 @@ void __fastcall TfrmMain::FormShow(TObject *Sender)
     if (!once)
     {
 		once = true;
-		frmLog->SetLogLinesLimit(appSettings.Logging.iMaxUiLogLines);		
+		frmLog->SetLogLinesLimit(appSettings.logging.maxUiLogLines);		
 		CLog::Instance()->SetLevel(E_LOG_TRACE);
 		CLog::Instance()->callbackLog = frmLog->OnLog;
 	}

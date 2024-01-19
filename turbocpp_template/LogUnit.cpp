@@ -126,7 +126,6 @@ void __fastcall TfrmLog::miCopyClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-
 void __fastcall TfrmLog::FormShow(TObject *Sender)
 {
 	UpdateUi();
@@ -135,7 +134,7 @@ void __fastcall TfrmLog::FormShow(TObject *Sender)
 
 void TfrmLog::UpdateUi(void)
 {
-	chbLogToFile->Checked = appSettings.Logging.bLogToFile;
+	chbLogToFile->Checked = appSettings.logging.logToFile;
 }
 
 void __fastcall TfrmLog::miSaveToFileClick(TObject *Sender)
@@ -154,8 +153,8 @@ void __fastcall TfrmLog::miSaveToFileClick(TObject *Sender)
 
 void __fastcall TfrmLog::chbLogToFileClick(TObject *Sender)
 {
-	appSettings.Logging.bLogToFile = chbLogToFile->Checked;
-	if (appSettings.Logging.bLogToFile)
+	appSettings.logging.logToFile = chbLogToFile->Checked;
+	if (appSettings.logging.logToFile)
 		CLog::Instance()->SetFile(ChangeFileExt(Application->ExeName, ".log").c_str());
 	else
 		CLog::Instance()->SetFile("");

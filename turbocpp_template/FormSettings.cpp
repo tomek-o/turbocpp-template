@@ -20,13 +20,13 @@ void __fastcall TfrmSettings::FormShow(TObject *Sender)
 {
     assert(appSettings);
 	tmpSettings = *appSettings;
-	chbAlwaysOnTop->Checked = tmpSettings.frmMain.bAlwaysOnTop;
+	chbAlwaysOnTop->Checked = tmpSettings.frmMain.alwaysOnTop;
 
-	chbLogToFile->Checked = tmpSettings.Logging.bLogToFile;
+	chbLogToFile->Checked = tmpSettings.logging.logToFile;
 	cmbMaxUiLogLines->ItemIndex = -1;
 	for (int i=0; i<cmbMaxUiLogLines->Items->Count; i++)
 	{
-		if ((unsigned int)StrToInt(cmbMaxUiLogLines->Items->Strings[i]) >= tmpSettings.Logging.iMaxUiLogLines)
+		if ((unsigned int)StrToInt(cmbMaxUiLogLines->Items->Strings[i]) >= tmpSettings.logging.maxUiLogLines)
 		{
 			cmbMaxUiLogLines->ItemIndex = i;
 			break;
@@ -45,7 +45,7 @@ void __fastcall TfrmSettings::btnCancelClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TfrmSettings::btnApplyClick(TObject *Sender)
 {
-	tmpSettings.Logging.bLogToFile = chbLogToFile->Checked;
+	tmpSettings.logging.logToFile = chbLogToFile->Checked;
 
 	*appSettings = tmpSettings;
 	this->Close();	
@@ -54,13 +54,13 @@ void __fastcall TfrmSettings::btnApplyClick(TObject *Sender)
 
 void __fastcall TfrmSettings::chbAlwaysOnTopClick(TObject *Sender)
 {
-	tmpSettings.frmMain.bAlwaysOnTop = chbAlwaysOnTop->Checked;	
+	tmpSettings.frmMain.alwaysOnTop = chbAlwaysOnTop->Checked;	
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TfrmSettings::cmbMaxUiLogLinesChange(TObject *Sender)
 {
-	tmpSettings.Logging.iMaxUiLogLines = StrToInt(cmbMaxUiLogLines->Text);	
+	tmpSettings.logging.maxUiLogLines = StrToInt(cmbMaxUiLogLines->Text);	
 }
 //---------------------------------------------------------------------------
 

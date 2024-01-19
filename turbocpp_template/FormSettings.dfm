@@ -55,6 +55,10 @@ object frmSettings: TfrmSettings
     TabOrder = 0
     object tsGeneral: TTabSheet
       Caption = 'General'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object chbAlwaysOnTop: TCheckBox
         Left = 3
         Top = 3
@@ -85,7 +89,7 @@ object frmSettings: TfrmSettings
         Width = 111
         Height = 21
         Style = csDropDownList
-        ItemHeight = 0
+        ItemHeight = 13
         TabOrder = 0
         OnChange = cmbMaxUiLogLinesChange
         Items.Strings = (

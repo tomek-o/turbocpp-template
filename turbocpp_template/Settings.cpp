@@ -19,27 +19,10 @@ inline void strncpyz(char* dst, const char* src, int dstsize) {
 	dst[dstsize-1] = '\0';
 }
 
-void Settings::SetDefault(void)
-{
-	frmMain.iWidth = 600;
-	frmMain.iHeight = 400;
-	frmMain.iPosX = 30;
-	frmMain.iPosY = 30;
-	frmMain.bWindowMaximized = false;
-	frmMain.bAlwaysOnTop = false;
-
-	Logging.bLogToFile = false;
-	Logging.bFlush = false;
-	Logging.iMaxFileSize = Settings::_Logging::DEF_MAX_FILE_SIZE;
-	Logging.iMaxUiLogLines = 5000;
-}
-
 int Settings::Read(AnsiString asFileName)
 {
 	Json::Value root;   // will contains the root value after parsing.
 	Json::Reader reader;
-
-    SetDefault();
 
 	try
 	{
@@ -57,43 +40,27 @@ int Settings::Read(AnsiString asFileName)
 		return 1;
 	}
 
-	int maxX = GetSystemMetrics(SM_CXSCREEN);
-	/** \todo Ugly fixed taskbar margin */
-	int maxY = GetSystemMetrics(SM_CYSCREEN) - 32;
+	{
+		int maxX = GetSystemMetrics(SM_CXSCREEN);
+		/** \todo Ugly fixed taskbar margin */
+		int maxY = GetSystemMetrics(SM_CYSCREEN) - 32;
 
-	const Json::Value &frmMainJson = root["frmMain"];
-	frmMain.iWidth = frmMainJson.get("AppWidth", 350).asInt();
-	frmMain.iHeight = frmMainJson.get("AppHeight", 300).asInt();
-	if (frmMain.iWidth < 250 || frmMain.iWidth > maxX + 20)
-	{
-		frmMain.iWidth = 250;
+		const Json::Value &jv = root["frmMain"];
+		jv.getIntInRange("width", frmMain.width, 250, maxX + 20);
+		jv.getIntInRange("height", frmMain.height, 200, maxY + 20);
+		jv.getIntInRange("positionX", frmMain.posX, 0, maxX - 100);
+		jv.getIntInRange("positionY", frmMain.posY, 0, maxY - 100);
+		jv.getBool("maximized", frmMain.windowMaximized);
+		jv.get("alwaysOnTop", frmMain.alwaysOnTop);
 	}
-	if (frmMain.iHeight < 200 || frmMain.iHeight > maxY + 20)
-	{
-		frmMain.iHeight = 200;
-	}
-	frmMain.iPosX = frmMainJson.get("AppPositionX", 30).asInt();
-	frmMain.iPosY = frmMainJson.get("AppPositionY", 30).asInt();
-	if (frmMain.iPosX < 0)
-		frmMain.iPosX = 0;
-	if (frmMain.iPosY < 0)
-		frmMain.iPosY = 0;
-	if (frmMain.iPosX + frmMain.iWidth > maxX)
-		frmMain.iPosX = maxX - frmMain.iWidth;
-	if (frmMain.iPosY + frmMain.iHeight > maxY)
-		frmMain.iPosY = maxY - frmMain.iHeight;
-	frmMain.bWindowMaximized = frmMainJson.get("Maximized", false).asBool();
-	frmMain.bAlwaysOnTop = frmMainJson.get("AlwaysOnTop", false).asBool();
 
-	const Json::Value &LoggingJson = root["Logging"];
-	Logging.bLogToFile = LoggingJson.get("LogToFile", false).asBool();
-	Logging.bFlush = LoggingJson.get("Flush", Logging.bFlush).asBool();
-	Logging.iMaxFileSize = LoggingJson.get("MaxFileSize", Logging.iMaxFileSize).asInt();
-	if (Logging.iMaxFileSize < Settings::_Logging::MIN_MAX_FILE_SIZE || Logging.iMaxFileSize > Settings::_Logging::MIN_MAX_FILE_SIZE)
 	{
-		Logging.iMaxFileSize = Settings::_Logging::DEF_MAX_FILE_SIZE;
+		const Json::Value &jv = root["logging"];
+		jv.getBool("logToFile", logging.logToFile);
+		jv.getBool("flush", logging.flush);
+		jv.getIntInRange("maxFileSize", logging.maxFileSize, Logging::MIN_MAX_FILE_SIZE, Logging::MAX_MAX_FILE_SIZE);
+		jv.getUInt("maxUiLogLines", logging.maxUiLogLines);
 	}
-	Logging.iMaxUiLogLines = LoggingJson.get("MaxUiLogLines", 5000).asInt();
 
 	return 0;
 }
@@ -103,17 +70,23 @@ int Settings::Write(AnsiString asFileName)
 	Json::Value root;
 	Json::StyledWriter writer;
 
-	root["frmMain"]["AppWidth"] = frmMain.iWidth;
-	root["frmMain"]["AppHeight"] = frmMain.iHeight;
-	root["frmMain"]["AppPositionX"] = frmMain.iPosX;
-	root["frmMain"]["AppPositionY"] = frmMain.iPosY;
-	root["frmMain"]["Maximized"] = frmMain.bWindowMaximized;
-	root["frmMain"]["AlwaysOnTop"] = frmMain.bAlwaysOnTop;
+	{
+		Json::Value &jv = root["frmMain"];
+		jv["width"] = frmMain.width;
+		jv["height"] = frmMain.height;
+		jv["positionX"] = frmMain.posX;
+		jv["positionY"] = frmMain.posY;
+		jv["maximized"] = frmMain.windowMaximized;
+		jv["alwaysOnTop"] = frmMain.alwaysOnTop;
+	}
 
-	root["Logging"]["LogToFile"] = Logging.bLogToFile;
-	root["Logging"]["Flush"] = Logging.bFlush;
-	root["Logging"]["MaxFileSize"] = Logging.iMaxFileSize;
-	root["Logging"]["MaxUiLogLines"] = Logging.iMaxUiLogLines;
+	{
+		Json::Value &jv = root["logging"];
+		jv["logToFile"] = logging.logToFile;
+		jv["flush"] = logging.flush;
+		jv["maxFileSize"] = logging.maxFileSize;
+		jv["maxUiLogLines"] = logging.maxUiLogLines;
+	}
 
 
 	std::string outputConfig = writer.write( root );
