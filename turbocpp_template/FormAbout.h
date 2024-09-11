@@ -19,7 +19,7 @@
 class TfrmAbout : public TForm
 {
 __published:
-	TPanel *Panel1;
+	TPanel *pnlMain;
 	TImage *ProgramIcon;
 	TLabel *ProductName;
 	TButton *OKButton;

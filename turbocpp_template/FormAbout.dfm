@@ -17,7 +17,7 @@ object frmAbout: TfrmAbout
   OnKeyPress = FormKeyPress
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel1: TPanel
+  object pnlMain: TPanel
     Left = 0
     Top = 0
     Width = 537
@@ -258,7 +258,7 @@ object frmAbout: TfrmAbout
     object ProductName: TLabel
       Left = 88
       Top = 8
-      Width = 45
+      Width = 73
       Height = 13
       Caption = 'Product'
       FocusControl = OKButton
@@ -270,7 +270,7 @@ object frmAbout: TfrmAbout
       ParentFont = False
       IsControl = True
     end
-    object Copyright: TLabel
+    object lblCopyright: TLabel
       Left = 8
       Top = 325
       Width = 368
@@ -281,7 +281,7 @@ object frmAbout: TfrmAbout
       IsControl = True
     end
     object lblVersion: TLabel
-      Left = 159
+      Left = 173
       Top = 8
       Width = 45
       Height = 13
@@ -313,7 +313,7 @@ object frmAbout: TfrmAbout
       IsControl = True
     end
     object lblBuildTimestamp: TLabel
-      Left = 159
+      Left = 173
       Top = 27
       Width = 84
       Height = 13
@@ -330,7 +330,7 @@ object frmAbout: TfrmAbout
         's:'
     end
     object lblCodeguard: TLabel
-      Left = 252
+      Left = 266
       Top = 46
       Width = 54
       Height = 13
@@ -338,7 +338,7 @@ object frmAbout: TfrmAbout
       IsControl = True
     end
     object lblCodeGuardState: TLabel
-      Left = 312
+      Left = 326
       Top = 46
       Width = 16
       Height = 13
@@ -347,7 +347,7 @@ object frmAbout: TfrmAbout
       IsControl = True
     end
     object lblDebug: TLabel
-      Left = 159
+      Left = 173
       Top = 46
       Width = 32
       Height = 13
@@ -355,7 +355,7 @@ object frmAbout: TfrmAbout
       IsControl = True
     end
     object lblDebugState: TLabel
-      Left = 197
+      Left = 211
       Top = 46
       Width = 16
       Height = 13
@@ -363,9 +363,9 @@ object frmAbout: TfrmAbout
       IsControl = True
     end
     object lblExeLocation: TLabel
-      Left = 159
+      Left = 173
       Top = 65
-      Width = 368
+      Width = 354
       Height = 13
       Cursor = crHandPoint
       AutoSize = False
@@ -411,10 +411,12 @@ object frmAbout: TfrmAbout
           '================================================================' +
           '============='#10#13#10#10
         ''
+        ''
         
           'The JsonCpp library'#39's source code, including accompanying docume' +
           'ntation, tests and demonstration '
         'applications, are licensed under the following conditions...'#10#13#10#10
+        ''
         ''
         
           'The author (Baptiste Lepilleur) explicitly disclaims copyright i' +
@@ -423,12 +425,14 @@ object frmAbout: TfrmAbout
           'disclaimer. In such jurisdictions, this software is released int' +
           'o the Public Domain.'#10#13#10#10
         ''
+        ''
         
           'In jurisdictions which do not recognize Public Domain property (' +
           'e.g. Germany as of 2010), this software is '
         
           'Copyright (c) 2007-2010 by Baptiste Lepilleur, and is released u' +
           'nder the terms of the MIT License.'#10#13#10#10
+        ''
         ''
         
           'In jurisdictions which recognize Public Domain property, the use' +
@@ -440,10 +444,12 @@ object frmAbout: TfrmAbout
           'of dual Public Domain/MIT License conditions described here, as ' +
           'they choose.'#10#13#10#10
         ''
+        ''
         
           'The MIT License is about as close to Public Domain as a license ' +
           'can get, and is described in clear, '
         'concise terms at:'#10#13#10#10
+        ''
         ''
         '   http://en.wikipedia.org/wiki/MIT_License '#10
         '')
