@@ -48,8 +48,13 @@ int Settings::Read(AnsiString asFileName)
 		const Json::Value &jv = root["frmMain"];
 		jv.getIntInRange("width", frmMain.width, 250, maxX + 20);
 		jv.getIntInRange("height", frmMain.height, 200, maxY + 20);
+	#if 0
 		jv.getIntInRange("positionX", frmMain.posX, 0, maxX - 100);
 		jv.getIntInRange("positionY", frmMain.posY, 0, maxY - 100);
+	#else
+		jv.getInt("positionX", frmMain.posX);
+		jv.getInt("positionY", frmMain.posY);
+	#endif
 		jv.getBool("maximized", frmMain.windowMaximized);
 		jv.get("alwaysOnTop", frmMain.alwaysOnTop);
 	}

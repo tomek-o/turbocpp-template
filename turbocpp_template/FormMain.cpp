@@ -95,6 +95,8 @@ void __fastcall TfrmMain::FormShow(TObject *Sender)
 		frmLog->SetLogLinesLimit(appSettings.logging.maxUiLogLines);		
 		CLog::Instance()->SetLevel(E_LOG_TRACE);
 		CLog::Instance()->callbackLog = frmLog->OnLog;
+		// make sure window position is not outside of available monitors
+		OnRestore(NULL);
 	}
 	LOG("Application started");
 }
@@ -143,3 +145,39 @@ void __fastcall TfrmMain::WMDropFiles(TWMDropFiles &message)
 	DragFinish((HDROP) message.Drop);
 }
 #endif
+
+void __fastcall TfrmMain::OnRestore(TObject *Sender)
+{
+	bool monitorFound = false;
+	for (int i=0; i<Screen->MonitorCount; i++)
+	{
+		TMonitor *monitor = Screen->Monitors[i];
+		enum { MARGIN = 30 };
+		if (
+			(Left + Width + MARGIN >= monitor->Left) &&
+			(Left - MARGIN <= monitor->Left + monitor->Width) &&
+			(Top + 5 >= monitor->Top) &&
+			(Top - MARGIN <= monitor->Top + monitor->Height)
+			)
+		{
+			monitorFound = true;
+			break;
+		}
+	}
+	if (!monitorFound)
+	{
+		if (Screen->MonitorCount > 0)
+		{
+			LOG("Moving main window to first monitor\n");
+			TMonitor *monitor = Screen->Monitors[0];
+			Left = monitor->Left + 50;
+			Top = monitor->Top + 50;
+			if (monitor)
+			{
+				LOG("Moving main window to first monitor\n");
+				Left = monitor->Left + 50;
+				Top = monitor->Top + 50;
+			}
+		}
+	}
+}

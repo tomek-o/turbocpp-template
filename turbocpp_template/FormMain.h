@@ -46,6 +46,7 @@ private:	// User declarations
 #ifdef ACCEPT_WM_DROPFILES
 	void __fastcall WMDropFiles(TWMDropFiles &message);
 #endif
+	void __fastcall OnRestore(TObject *Sender);
 public:		// User declarations
 	__fastcall TfrmMain(TComponent* Owner);
 	BEGIN_MESSAGE_MAP
