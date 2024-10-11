@@ -98,7 +98,7 @@ void __fastcall TfrmMain::FormShow(TObject *Sender)
 		// make sure window position is not outside of available monitors
 		OnRestore(NULL);
 	}
-	LOG("Application started");
+	LOG("Application started\n");
 }
 //---------------------------------------------------------------------------
 
